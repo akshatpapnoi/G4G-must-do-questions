@@ -1,0 +1,55 @@
+Given two arrays A1[] and A2[] of size N and M respectively. The task is to sort A1 in such a way that the relative order among the elements will be same as those in A2. For the elements not present in A2, append them at last in sorted order. It is also given that the number of elements in A2[] are smaller than or equal to number of elements in A1[] and A2[] has all distinct elements.
+Note: Expected time complexity is O(N log(N)).
+
+Input:
+First line of input contains number of testcases. For each testcase, first line of input contains length of arrays N and M and next two line contains N and M elements respectively.
+
+Output:
+Print the relatively sorted array.
+
+
+Solution:
+-Store frequency of each element of A1[] in a map.
+-For each element in A2[], print corresponding element in A1[] its frequency times and delete element in A1[].
+-Print remaining elements of A1[] their frequency times.
+
+
+
+Code:
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	//code
+	int t;
+	cin>>t;
+	while(t--){
+	    int n,m;
+	    cin>>n>>m;
+	    
+	    map<int, int> z;
+	    for(int i=0;i<n;i++){
+	        int x;
+	        cin>>x;
+	        z[x] += 1;
+	    }
+	    
+	    for(int i=0;i<m;i++){
+	        int x;
+	        cin>>x;
+	        for(int j=0;j<z[x];j++)
+	            cout<<x<<" ";
+	        z.erase(x);
+	    }
+	    
+	    for(auto i=z.begin();i!=z.end();i++){
+	        for(int j=0;j<i->second;j++)
+	            cout<<i->first<<" ";
+	    }
+	    
+	    cout<<endl;
+	   
+	}
+	return 0;
+}
